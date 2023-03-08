@@ -1,12 +1,14 @@
 # quotation-detection
-Detection of quotations in a text from RIQUA corpus
+Detection of quotations in a text from RIQUA corpus.
 
-We use the RiQuA dataset, which consists of:
-• Percentage of quotation labelled words in the entire text: 33.94 % • Percentage of entity labelled words in the entire text: 1.67 %
-• Percentage of cue labelled words in the entire text: 0.89 %
+We used the RiQuA dataset, which consists of:<br/>
+• Percentage of quotation labelled words in the entire text: 33.94 % <br/>
+• Percentage of entity labelled words in the entire text: 1.67 %<br/>
+• Percentage of cue labelled words in the entire text: 0.89 %<br/>
 
-To tokenize using BERT tokenizer we need to convert our text in BERT supported input - CONLL for- mat :
+To tokenize using BERT tokenizer we need to convert our text in BERT supported input - CONLL format :<br/>
 • Assigned each token a tag denoting whether it is the beginning of a span, inside a span, or outside to get the supported format. Like shown in Figure 1, we formatted our data such that the beginning and intermediate quotation words are marked with prefix B- and I- respectively. Similarly the cue and entity words are also converted. The unlabelled words are annotated as O.
+<img width="943" alt="Screen Shot 2023-03-07 at 10 42 24 PM" src="https://user-images.githubusercontent.com/114776023/223614097-1f5f0ba5-f7c5-48bb-ac43-1a7cde64e245.png">
 <br/>
 • Text is passed into a pretrained BERT model sentence by sentence, and the hidden states of the final layers are summed and saved as a contextualized embedding for each token.
 <br/>
@@ -25,6 +27,7 @@ To tokenize using BERT tokenizer we need to convert our text in BERT supported i
 
 
 ## Conclusion and Discussion:
+
 <br/>
 Overall, our results are in line with expectations, with the baseline performing the worst by far, and the finetuned model performing the best. The vast gap in performance between the baseline and even simple models like KNN illustrates the need for context in a task like quotation detection. Logistic Regression is able to perform fairly well, which makes sense since it is similar to adding a fully-connected layer on top of a pretrained BERT model with frozen weights. Still, this is an encouraging result, showing that it is possible to achieve markedly increased performance over the baselines without changing any weights in the BERT model, requiring fewer computational resources than a full finetune.
 
